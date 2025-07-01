@@ -1,36 +1,30 @@
 package com.project.back_end.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
-public class Patient {
+public class Prescription {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
     @NotNull
-    @Size(min = 3, max = 100)
-    private String name;
+    private Doctor doctor;
+
+    @ManyToOne
+    @NotNull
+    private Patient patient;
 
     @NotNull
-    @Email
-    private String email;
+    private LocalDate dateIssued;
 
     @NotNull
-    @Size(min = 6)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password;
-
-    @NotNull
-    @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
-    private String phone;
-
-    @NotNull
-    @Size(max = 255)
-    private String address;
+    @Column(length = 1000)
+    private String medications;
 
     // ✅ Getters and Setters
 
@@ -42,43 +36,35 @@ public class Patient {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public String getEmail() {
-        return email;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
-    public String getPassword() {
-        return password;
+    public LocalDate getDateIssued() {
+        return dateIssued;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDateIssued(LocalDate dateIssued) {
+        this.dateIssued = dateIssued;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getMedications() {
+        return medications;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setMedications(String medications) {
+        this.medications = medications;
     }
 }

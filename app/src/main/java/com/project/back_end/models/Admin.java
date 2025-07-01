@@ -1,20 +1,22 @@
 package com.project.back_end.models;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
-public class Appointment {
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long doctorId;
-    private Long patientId;
-    private LocalDateTime appointmentTime;
+    private String name;
+    private String email;
 
-    // Getters and setters
+    // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -23,27 +25,19 @@ public class Appointment {
         this.id = id;
     }
 
-    public Long getDoctorId() {
-        return doctorId;
+    public String getName() {
+        return name;
     }
 
-    public void setDoctorId(Long doctorId) {
-        this.doctorId = doctorId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Long getPatientId() {
-        return patientId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
-    }
-
-    public LocalDateTime getAppointmentTime() {
-        return appointmentTime;
-    }
-
-    public void setAppointmentTime(LocalDateTime appointmentTime) {
-        this.appointmentTime = appointmentTime;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
